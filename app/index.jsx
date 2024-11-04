@@ -3,20 +3,21 @@ import { Image, StyleSheet, View } from "react-native";
 
 export default function Index() {
   return (
-    <View style={style.container}>
+    <View style={styles.container}>
       <Image
       source={{uri: 'https://fullflix-xi.vercel.app/static/media/backgroundFullflix.60a6d4a9126182f0f885.png'}}
-      style={style.image}
+      style={styles.image}
       />
-      <Link href={'/movies'} style={style.navigation}>filme</Link>
+      <Link href={'/movies'} style={styles.navigation}>filme</Link>
+      <Link href={'/details'} style={styles.details}>detalhe</Link>
     </View>
   );
 }
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   container:{
     flex:1,
-    justifyContent:'center',
+    justifyContent:'flex-end',
     alignItems:'center',
     backgroundColor:'black'
   },
@@ -28,5 +29,10 @@ const style = StyleSheet.create({
   navigation:{
     color:'red',
     paddingBottom:100 //retirar após ajustado set time.
+  },
+  details:{
+    color:'red',
+    paddingBottom:80,
+    
   }
 })
