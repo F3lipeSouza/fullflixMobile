@@ -10,8 +10,6 @@ import {
   Card,
 } from "./styles/movies";
 import { useRouter } from "expo-router";
-import axios from "axios";
-import { apikey } from "../api/apikey";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Movies() {

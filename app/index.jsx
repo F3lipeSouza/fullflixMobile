@@ -9,7 +9,6 @@ export default function Index() {
       style={styles.image}
       />
       <Link href={'/movies'} style={styles.navigation}>filme</Link>
-      <Link href={'/details'} style={styles.details}>detalhe</Link>
     </View>
   );
 }

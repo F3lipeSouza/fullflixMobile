@@ -15,6 +15,7 @@ import {
 } from "./styles/details/details";
 import { useRouter } from "expo-router";
 
+
 export default function details() {
   const [movieDetails, setMovieDetails] = useState();
   const route = useRouter();
@@ -25,8 +26,8 @@ export default function details() {
   useEffect(() => {
     showDetails = async () => {
       try {
-        const jsonValue = await AsyncStorage.getItem("details");
-        setMovieDetails(jsonValue != null ? JSON.parse(jsonValue) : null);
+        const detalhesDoFilme = await AsyncStorage.getItem("details");
+        setMovieDetails(detalhesDoFilme != null ? JSON.parse(detalhesDoFilme) : null);
       } catch (error) {
         console.log("erro ao reproduzir detalhes", error);
       }

@@ -2,14 +2,14 @@ import styled from "styled-components/native";
 
 export const Layout = styled.View`
   align-items: center;
-  height:100%;
+  min-height:100%;
   row-gap: 15px;
   column-gap: 6px;
 `;
 
 export const ImageContainer = styled.View`
   width: 100%;
-  height: 30%;
+  height: 200px;
 `;
 
 export const ImageDetails = styled.Image`
