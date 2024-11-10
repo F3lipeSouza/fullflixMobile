@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect, useState } from "react";
-import { Text} from "react-native";
+import { ScrollView, Text } from "react-native";
 import { apiImageBase } from "../api/apiImageBase";
 import {
   ImageContainer,
@@ -11,23 +11,24 @@ import {
   Layout,
   BtnVoltar,
   BtnVoltarText,
-  SinopseText
+  SinopseText,
 } from "./styles/details/details";
 import { useRouter } from "expo-router";
-
 
 export default function details() {
   const [movieDetails, setMovieDetails] = useState();
   const route = useRouter();
-  const voltar = ()=>{
-    route.push('/movies')
-  }
+  const voltar = () => {
+    route.replace("/movies");
+  };
 
   useEffect(() => {
     showDetails = async () => {
       try {
         const detalhesDoFilme = await AsyncStorage.getItem("details");
-        setMovieDetails(detalhesDoFilme != null ? JSON.parse(detalhesDoFilme) : null);
+        setMovieDetails(
+          detalhesDoFilme != null ? JSON.parse(detalhesDoFilme) : null
+        );
       } catch (error) {
         console.log("erro ao reproduzir detalhes", error);
       }
@@ -37,34 +38,35 @@ export default function details() {
 
   if (!movieDetails) {
     return <Text>carregando...</Text>;
-  };
-
+  }
 
   return (
-    <Layout>
-      <ImageContainer>
-        <ImageDetails
-          source={{ uri: `${apiImageBase}/${movieDetails.poster_path}` }}
-        />
-      </ImageContainer>
+    <ScrollView>
+      <Layout>
+        <ImageContainer>
+          <ImageDetails
+            source={{ uri: `${apiImageBase}/${movieDetails.poster_path}` }}
+          />
+        </ImageContainer>
 
-      <Title>{movieDetails.title}</Title>
+        <Title>{movieDetails.title}</Title>
 
-      <UnderTitle>Sinopse</UnderTitle>
+        <UnderTitle>Sinopse</UnderTitle>
 
-      <SinopseText>{movieDetails.overview}</SinopseText>
+        <SinopseText>{movieDetails.overview}</SinopseText>
 
-      <UnderTitle>Nota</UnderTitle>
+        <UnderTitle>Nota</UnderTitle>
 
-      <TextDetails>{movieDetails.vote_average.toFixed(1)}</TextDetails>
+        <TextDetails>{movieDetails.vote_average.toFixed(1)}</TextDetails>
 
-      <UnderTitle>Data de lançamento</UnderTitle>
+        <UnderTitle>Data de lançamento</UnderTitle>
 
-      <TextDetails>{movieDetails.release_date}</TextDetails>
+        <TextDetails>{movieDetails.release_date}</TextDetails>
 
-      <BtnVoltar onPress={()=>voltar()}>
-        <BtnVoltarText>Voltar</BtnVoltarText>
-      </BtnVoltar>
-    </Layout>
+        <BtnVoltar onPress={() => voltar()}>
+          <BtnVoltarText>Voltar</BtnVoltarText>
+        </BtnVoltar>
+      </Layout>
+    </ScrollView>
   );
 }

@@ -25,7 +25,7 @@ export default function Movies() {
     try {
       const jsonValue = JSON.stringify(movieId);
       await AsyncStorage.setItem("details", jsonValue);
-      route.push('/details')
+      route.replace('/details')
     } catch (error) {
       console.error("erro ao salvar no asyncStorage");
     }
